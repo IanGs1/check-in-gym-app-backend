@@ -4,5 +4,9 @@ node_modules
 # Build
 build
 
+# Environment Variables
+.env
+.env.test
+
 # RFs RNFs RN
 to-do.md
