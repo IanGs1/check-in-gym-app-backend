@@ -1,8 +1,15 @@
 {
   "compilerOptions": {
     "lib": ["ES2023"],
-    "module": "node16",
-    "target": "ES2022",
+    "module": "commonjs",
+    "target": "es6",
+    
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist",
 
     "baseUrl": "./",
     "paths": {
