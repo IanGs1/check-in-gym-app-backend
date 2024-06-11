@@ -22,6 +22,12 @@ export class InMemoryCheckInsRepository implements CheckInsRepository {
     return checkIn;
   };
 
+  async findManyByUserId(userId: string, page: number,) {
+    return this.checkIns
+      .filter(checkIn => checkIn.user_id === userId)
+      .slice((page - 1) * 20, page * 20);
+  };
+
   async findByUserIdOnDate(userId: string, date: Date) {
       // 2024-06-03T00:00:00 
       const startOfTheDay = dayjs(date).startOf("date");
