@@ -27,8 +27,6 @@ describe("Get User Metrics Use Case", () => {
       userId: "user-01",
     });
 
-    console.log(checkInsCount)
-
     expect(checkInsCount)
       .toEqual(2);
   });
