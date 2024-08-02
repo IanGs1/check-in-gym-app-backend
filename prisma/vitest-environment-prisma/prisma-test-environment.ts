@@ -37,11 +37,11 @@ export default <Environment>{
     const databaseURL = generateDatabaseURL(schema);
     process.env.DATABASE_URL = databaseURL;
 
-    execSync("npx prima migrate deploy");
+    execSync("npx prisma migrate deploy");
 
     return {
       async teardown() {
-        await prisma.$executeRawUnsafe(`DROP SCHEMA IF EXISTS "${schema}" CASCADE`);
+        await prisma.$queryRawUnsafe(`DROP SCHEMA IF EXISTS "${schema}" CASCADE`);
       },
     };
   },
