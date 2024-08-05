@@ -42,6 +42,7 @@ export default <Environment>{
     return {
       async teardown() {
         await prisma.$queryRawUnsafe(`DROP SCHEMA IF EXISTS "${schema}" CASCADE`);
+        await prisma.$disconnect();
       },
     };
   },
