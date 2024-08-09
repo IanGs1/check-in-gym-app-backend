@@ -4,7 +4,7 @@ import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { app } from "@/app";
 import { createAndAuthenticateUser } from "@/utils/test/create-and-authenticate-user";
 
-describe("Create Controller [E2E]", () => {
+describe("Create Gym Controller [E2E]", () => {
   beforeEach(async () => {
     await app.ready();
   });
