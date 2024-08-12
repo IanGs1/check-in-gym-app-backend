@@ -1,17 +1,16 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 
-import { makeAuthenticateUseCase } from "@/use-cases/factories/make-authenticate-use-case";
-import { InvalidCredentialsError } from "@/use-cases/errors/invalid-credentials-error";
-
-import z from "zod";
-
 export async function refresh(request: FastifyRequest, reply: FastifyReply) {
   await request.jwtVerify({
     onlyCookie: true,
   });
 
+  const { role: userRole } = request.user;
+  
   const token = await reply.jwtSign(
-    {},
+    {
+      role: userRole,
+    },
     {
       sign: {
         sub: request.user.sub
@@ -20,7 +19,9 @@ export async function refresh(request: FastifyRequest, reply: FastifyReply) {
   );
 
   const refreshToken = await reply.jwtSign(
-    {},
+    {
+      role: userRole,
+    },
     {
       sign: {
         sub: request.user.sub,
