@@ -14,7 +14,7 @@ describe("Nearby Controller [E2E]", () => {
   });
 
   it("It should be able to list nearby Gyms", async () => {
-    const { token: userToken } = await createAndAuthenticateUser(app);
+    const { token: userToken } = await createAndAuthenticateUser(app, true);
     
     await request(app.server)
     .post("/gyms")
