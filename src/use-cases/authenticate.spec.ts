@@ -29,17 +29,17 @@ describe("Authenticate Use Case", () => {
       password: "123456",
     });
 
-    expect(user.id)
-      .toEqual(expect.any(String));
+    expect(user.id).toEqual(expect.any(String));
   });
 
   it("Should not be able to authenticate with wrong email", async () => {
-    expect(() => sut.execute({
-      email: "jonhdoe@email.com",
-      password: "123456",
-    }))
-      .rejects.toBeInstanceOf(InvalidCredentialsError);
-  }); 
+    expect(() =>
+      sut.execute({
+        email: "jonhdoe@email.com",
+        password: "123456",
+      })
+    ).rejects.toBeInstanceOf(InvalidCredentialsError);
+  });
 
   it("Should not be able to authenticate with wrong password", async () => {
     await usersRepository.create({
@@ -48,10 +48,11 @@ describe("Authenticate Use Case", () => {
       password_hash: await hash("123456", 7),
     });
 
-    expect(() => sut.execute({
-      email: "jonhdoe@email.com",
-      password: "12345"
-    }))
-      .rejects.toBeInstanceOf(InvalidCredentialsError);
+    expect(() =>
+      sut.execute({
+        email: "jonhdoe@email.com",
+        password: "12345",
+      })
+    ).rejects.toBeInstanceOf(InvalidCredentialsError);
   });
 });
